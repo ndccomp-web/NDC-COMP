@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunrise Corner Shop</title>
+<style>
+  :root {
+    --bg: #fdf6ee;
+    --card: #ffffff;
+    --accent: #c46a2b;
+    --accent-dark: #9c521d;
+    --text: #3a2e26;
+    --muted: #7a6a5c;
+    --border: #eadfd2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 16px 48px;
+  }
+  header {
+    text-align: center;
+    padding: 48px 0 24px;
+  }
+  header h1 {
+    font-size: 2rem;
+    letter-spacing: 0.5px;
+  }
+  header p {
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  section {
+    margin-top: 36px;
+  }
+  h2 {
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 6px;
+    margin-bottom: 16px;
+  }
+
+  /* Menu */
+  .menu-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease;
+  }
+  .menu-item:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .menu-item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .menu-item-head .name { font-weight: bold; font-size: 1.05rem; }
+  .menu-item-head .price { color: var(--accent-dark); white-space: nowrap; }
+  .menu-item-head .short { color: var(--muted); font-size: 0.9rem; margin-top: 2px; }
+  .menu-item .detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease;
+    padding: 0 16px;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .menu-item.open .detail { max-height: 200px; padding-bottom: 14px; }
+  .menu-item .hint {
+    font-size: 0.75rem;
+    color: var(--accent);
+    padding: 0 16px 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .menu-item.open .hint { visibility: hidden; }
+
+  /* Hours */
+  .hours-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .today-banner {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 4px;
+    border-bottom: 1px dashed var(--border);
+    font-size: 0.95rem;
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row.today { color: var(--accent-dark); font-weight: bold; }
+  .hours-row .closed { color: var(--muted); font-style: italic; }
+
+  /* Contact */
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .contact-card p { margin-bottom: 14px; color: var(--muted); }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    flex: 1;
+    min-width: 140px;
+    display: inline-block;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: opacity 0.15s ease;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn.maps { background: #e7f0e7; color: #2e6b3e; border: 1px solid #bcd6bd; }
+  .btn.wa { background: #dcf3e0; color: #128c4a; border: 1px solid #a9dcb3; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Sunrise Corner Shop</h1>
+  <p>Fresh bakes &amp; good coffee, daily.</p>
+</header>
+
+<section id="menu">
+  <h2>Menu</h2>
+
+  <div class="menu-item">
+    <div class="menu-item-head">
+      <div>
+        <div class="name">Butter Croissant</div>
+        <div class="short">Flaky, golden, baked every morning.</div>
+      </div>
+      <div class="price">$3.50</div>
+    </div>
+    <p class="detail">Laminated over three days with French butter, then baked at dawn. Best within two hours of the oven — warm it for 20 seconds if you take one to go.</p>
+    <div class="hint">Tap for more</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-item-head">
+      <div>
+        <div class="name">House Flat White</div>
+        <div class="short">Double shot, silky milk, our signature roast.</div>
+      </div>
+      <div class="price">$4.00</div>
+    </div>
+    <p class="detail">Made with beans from a small roaster two towns over — chocolatey with a soft finish. Ask for oat or whole milk; both steam the same.</p>
+    <div class="hint">Tap for more</div>
+  </div>
+
+  <div class="menu-item">
+    <div class="menu-item-head">
+      <div>
+        <div class="name">Tomato &amp; Basil Toastie</div>
+        <div class="short">Sourdough, melted cheese, basil pesto.</div>
+      </div>
+      <div class="price">$6.50</div>
+    </div>
+    <p class="detail">Grilled on house sourdough with three cheeses and slow-roasted tomatoes. Add a fried egg for $1.50 — it turns into breakfast.</p>
+    <div class="hint">Tap for more</div>
+  </div>
+</section>
+
+<section id="hours">
+  <h2>Opening Hours</h2>
+  <div class="hours-card">
+    <div class="today-banner" id="today-banner"></div>
+    <div id="hours-list"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Find Us</h2>
+  <div class="contact-card">
+    <p>12 Baker Street, Old Town — next to the fountain. Call or message us any time during opening hours.</p>
+    <div class="btn-row">
+      <a class="btn maps" href="https://maps.google.com/?q=12+Baker+Street+Old+Town" target="_blank" rel="noopener">📍 Open in Maps</a>
+      <a class="btn wa" href="https://wa.me/15551234567" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Weekly schedule: 0 = Sunday. Update times here only.
+  var hours = [
+    { day: "Sunday",    open: "08:00", close: "14:00" },
+    { day: "Monday",    open: null,    close: null    },
+    { day: "Tuesday",   open: "07:30", close: "17:00" },
+    { day: "Wednesday", open: "07:30", close: "17:00" },
+    { day: "Thursday",  open: "07:30", close: "17:00" },
+    { day: "Friday",    open: "07:30", close: "18:00" },
+    { day: "Saturday",  open: "08:00", close: "18:00" }
+  ];
+
+  function fmt(t) { return t.replace(":", "."); }
+  function rowHtml(d, i, todayIdx) {
+    var cls = i === todayIdx ? ' class="hours-row today"' : ' class="hours-row"';
+    var times = d.open
+      ? fmt(d.open) + " – " + fmt(d.close)
+      : '<span class="closed">Closed</span>';
+    return '<div' + cls + '><span>' + d.day + (i === todayIdx ? " (today)" : "") +
+           '</span><span>' + times + "</span></div>";
+  }
+
+  var todayIdx = new Date().getDay();
+  var t = hours[todayIdx];
+  var banner = document.getElementById("today-banner");
+  banner.textContent = t.open
+    ? "Today (" + t.day + "): open " + fmt(t.open) + " – " + fmt(t.close)
+    : "Today (" + t.day + "): closed — see you tomorrow!";
+
+  document.getElementById("hours-list").innerHTML =
+    hours.map(function (d, i) { return rowHtml(d, i, todayIdx); }).join("");
+
+  // Tap-to-open menu items
+  document.querySelectorAll(".menu-item").forEach(function (el) {
+    el.addEventListener("click", function () {
+      el.classList.toggle("open");
+    });
+  });
+</script>
+
+</body>
+</html>
